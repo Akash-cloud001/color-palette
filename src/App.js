@@ -6,7 +6,7 @@ import { generatePalette } from './colorHelper';
 
 
 function App() {
-  const colors = colorSeeds[4];
+  const colors = colorSeeds[3];
   console.log(generatePalette(colors));
   return (
     <div className="App">

@@ -40,3 +40,14 @@
     border: 2px solid green !important;
     box-shadow: none !important;
 }
+.select-container{
+    flex-grow: 1;
+    
+}
+.select-component{
+    float: right;
+    font-size: small !important;
+}
+.menu-item{
+    font-size: small !important;  
+}
