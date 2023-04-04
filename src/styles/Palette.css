@@ -1,8 +1,33 @@
 .palette{
-    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin-inline: auto;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.slider{
+    width: 300px;
+    margin: 2px 10px;
+    display: inline-block;
+}
+.rc-slider-track{
+    background-color: transparent !important;
+}
+.rc-slider-rail{
+    height: 8px !important;
+}
+.rc-slider-handle{
+    background-color: green !important;
+    outline: none !important;
+    border: 2px solid green !important;
+    box-shadow: none !important;
+}
+.palette-colors{
+    height: 100%;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4,1fr);
-
 }

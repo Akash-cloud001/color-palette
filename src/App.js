@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       {/* NavBar */}
       <div className='palette-container'>
-        <Palette palette = {{...colors}} />
+        <Palette palette = {generatePalette(colors)} />
       </div>
       {/* Footer */}
     </div>
