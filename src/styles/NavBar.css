@@ -1,0 +1,42 @@
+.navbar{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem 1rem;
+}
+.logo{
+    height: 40px;
+    width: 40px;
+}
+.logo > a > img{
+    height: 100%;
+    width: 100%;
+}
+
+.slider{
+    width: 300px !important;
+    margin: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.slider>.slider-component{
+    width: 80%;
+}
+.slider>div{
+    font-size: x-small;
+    width: max-content;
+    font-weight: 600;
+    width: 20%;
+}
+.rc-slider-track{
+    background-color: transparent !important;
+}
+
+.rc-slider-handle{
+    background-color: green !important;
+    outline: none !important;
+    border: 2px solid green !important;
+    box-shadow: none !important;
+}

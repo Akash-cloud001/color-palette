@@ -6,7 +6,7 @@ const BoxColor = ({name,color}) => {
   const [copied, setCopied] = useState(false);
   const changeCopy = ()=>{
     setCopied(true);
-    setTimeout(()=> setCopied(false),2000);
+    setTimeout(()=> setCopied(false),1000);
   }
   
   return (
