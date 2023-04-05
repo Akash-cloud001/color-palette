@@ -42,7 +42,7 @@ const Palette = () => {
           )}
       </div>
       <footer className='palette-footer'>
-            <a href='https://github.com/Akash-cloud001'>Made by  Akash</a>
+            <a href='https://github.com/Akash-cloud001'><code>Made by  Akash</code></a>
             <div>
               <span>
                 {paletteName}
