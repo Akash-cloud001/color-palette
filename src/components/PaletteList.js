@@ -6,10 +6,10 @@ import MiniPalette from './MiniPalette';
 const styles = {
     root:{
         backgroundColor : 'blue',
-        height: '100%',
+        minHeight: '100vh',
         display : 'flex',
         alignItems: 'flex-start',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     container:{
         width : '50%',
@@ -17,7 +17,10 @@ const styles = {
         alignItems: 'flex-start',
         flexDirection: 'column',
         flexWrap:'wrap',
-        border:'1px solid black'
+        height : 'max-content',
+        gap:'1rem',
+        padding: '1rem 0rem'
+
     },
     nav:{
         display:'flex',
