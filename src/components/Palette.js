@@ -1,12 +1,25 @@
 import React, { useState } from 'react'
 import NavBar from './NavBar';
+import colorSeeds from '../colorSeeds';
+import { useParams } from 'react-router-dom';
 import '../styles/Palette.css';
 import BoxColor from './BoxColor';
+import { generatePalette } from '../colorHelper';
 
 
 
-const Palette = (props) => {
-  const {colors,paletteName, emoji} = props.palette;
+const Palette = () => {
+  const {id} = useParams();
+
+  const findPalette = (id)=>{
+    return colorSeeds.find((palette)=>{
+      return palette.id === id;
+    })
+  }  
+  const [pal, setPal] = useState(generatePalette(findPalette(id)));
+
+
+  const {colors,paletteName, emoji} = pal;
   const [level,setLevel] = useState(500);
   const [format, setFormat] = useState('hex');
   const changeLevel = (newLevel) =>{
@@ -29,12 +42,15 @@ const Palette = (props) => {
           )}
       </div>
       <footer className='palette-footer'>
-            <span>
-              {paletteName}
-            </span>
-            <span className='footer-emoji'>
-              {emoji}
-            </span>
+            <a href='https://github.com/Akash-cloud001'>Made by  Akash</a>
+            <div>
+              <span>
+                {paletteName}
+              </span>
+              <span className='footer-emoji'>
+                {emoji}
+              </span>
+            </div>
       </footer>
     </div>
   )
