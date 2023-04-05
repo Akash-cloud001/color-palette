@@ -5,6 +5,7 @@ import 'rc-slider/assets/index.css';
 import Slider from 'rc-slider';
 import logo from '../images/logo.png';
 import '../styles/NavBar.css';
+import { Link } from 'react-router-dom';
 
 
 const NavBar = ({level, changeLevel, changeSelect}) => {
@@ -22,7 +23,7 @@ const NavBar = ({level, changeLevel, changeSelect}) => {
     <>
         <header className='navbar'>
             <div className='logo'>
-                <a href='/'><img src={logo} alt='logo'/></a>
+                <Link to='/'><img src={logo} alt='logo'/></Link>
             </div>
             <div className='slider'>
                 <div>Level: {level} </div>

@@ -4,6 +4,7 @@ import { Routes, Route, useParams} from 'react-router-dom';
 import colorSeeds from './colorSeeds';
 import Palette from './components/Palette';
 import { generatePalette } from './colorHelper';
+import PaletteList from './components/PaletteList';
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<div>Main page</div>} />
+        <Route path='/' element={<PaletteList palette = {colorSeeds}/>} />
         <Route path='/palette/:id' element={<Palette />} />
       </Routes>
       {/* <div className='palette-container'>
