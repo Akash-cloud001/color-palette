@@ -15,6 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element={<PaletteList palette = {colorSeeds}/>} />
         <Route path='/palette/:id' element={<Palette />} />
+        <Route path='/palette/:paletteId/:colorId' element={<div>Single Color page</div>} />
       </Routes>
       {/* <div className='palette-container'>
         <Palette palette = {generatePalette(colors)} setColorId={setColorId}/>

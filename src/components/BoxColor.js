@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {  Snackbar, IconButton, Alert } from '@mui/material';
+import { Link } from 'react-router-dom';
 import '../styles/BoxColor.css';
 
 const BoxColor = ({name,color}) => {
@@ -29,7 +30,9 @@ const BoxColor = ({name,color}) => {
         </div> */}
         <div className='copy-content'>{name}</div>
         <button className='copy-button'>Copy</button>
-        <button className='see-more'>More</button>
+        <Link to='/' onClick={e=>e.stopPropagation()}>
+          <button className='see-more'>More</button>
+        </Link>
       </div>
     </CopyToClipboard>
     <Snackbar 
