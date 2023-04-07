@@ -44,6 +44,7 @@ const Palette = () => {
               key={color.id}
               colorId={color.id}
               paletteId = {id}
+              showLink
             />
           )}
       </div>

@@ -7,8 +7,7 @@ import '../styles/BoxColor.css';
 const BoxColor = (props) => {
   const navigate = useNavigate();
 
-  const {name,color,paletteId,colorId, handleClick} = props;
-  // console.log("in BoxColor", props);
+  const {name,color,paletteId,colorId, showLink} = props;
   const [copied, setCopied] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -19,33 +18,26 @@ const BoxColor = (props) => {
   const closeSnackBar = ()=>{
     setOpen(false);
   }
-  // const handleSingleColorClick = (e)=>{
-  //   e.stopPropagation();
-  //   handleClick();
-  // }
+
   const handleSingleColorClick = (e,paletteId, colorId)=>{
       e.stopPropagation();
       navigate(`/palette/${paletteId}/${colorId}`);
   }
-  console.log(paletteId, colorId);
   return (
     <>
     <CopyToClipboard text={color} onCopy={changeCopy}>
       <div className='BoxColor' style={{backgroundColor:color}}>
-        {/* <div className={`copy-overlay ${copied && 'show'}`} style={{background:color}}/>
-        <div className={`copy-msg ${copied && 'show'}`}>
-          <h1>
-            copied
-          </h1>
-          <p>
-            {color}
-          </p>
-        </div> */}
         <div className='copy-content'>{name}</div>
         <button className='copy-button'>Copy</button>
-        <Link to={`/palette/${paletteId}/${colorId}`} onClick={(e)=>{handleSingleColorClick(e,paletteId,colorId)}}>
+
+       {showLink &&  
+       <Link 
+          to={`/palette/${paletteId}/${colorId}`} 
+          onClick={(e)=>{handleSingleColorClick(e,paletteId,colorId)}}
+        >
           <button className='see-more'>More</button>
         </Link>
+        }
       </div>
     </CopyToClipboard>
     <Snackbar 

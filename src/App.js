@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path='/' element={<PaletteList palette = {colorSeeds}/>} />
         <Route path='/palette/:id' element={<Palette />} />
-        <Route path='/palette/:paletteId/:colorId' element={<SingleColorPalette />} />
+        <Route path='/palette/:paletteId/:colorId' element={<SingleColorPalette/>} />
       </Routes>
     </div>
   );
