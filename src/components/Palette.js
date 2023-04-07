@@ -10,24 +10,28 @@ import { generatePalette } from '../colorHelper';
 
 const Palette = () => {
   const {id} = useParams();
-
+  
   const findPalette = (id)=>{
     return colorSeeds.find((palette)=>{
       return palette.id === id;
     })
-  }  
+  };  
+
   const [pal, setPal] = useState(generatePalette(findPalette(id)));
-
-
   const {colors,paletteName, emoji} = pal;
   const [level,setLevel] = useState(500);
   const [format, setFormat] = useState('hex');
+
+
+
   const changeLevel = (newLevel) =>{
     setLevel(newLevel);
-  }
+  };
+
   const changeSelect = (val)=>{
     setFormat(val); 
-  }
+  };
+
   return (
     <div className='palette'>
       <NavBar level={level} changeLevel={changeLevel} changeSelect={changeSelect}/>
@@ -38,6 +42,8 @@ const Palette = () => {
               color={color[format]} 
               name={color.name}
               key={color.id}
+              colorId={color.id}
+              paletteId = {id}
             />
           )}
       </div>
