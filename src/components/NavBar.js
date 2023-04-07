@@ -8,7 +8,7 @@ import '../styles/NavBar.css';
 import { Link } from 'react-router-dom';
 
 
-const NavBar = ({level, changeLevel, changeSelect}) => {
+const NavBar = ({level,showSelect, changeLevel, changeSelect}) => {
     const [format, setFormat] = useState('hex');
     const [open, setOpen] = useState(false);
     const handleChangeSelect = (e)=>{
@@ -25,7 +25,7 @@ const NavBar = ({level, changeLevel, changeSelect}) => {
             <div className='logo'>
                 <Link to='/'><img src={logo} alt='logo'/></Link>
             </div>
-            <div className='slider'>
+        {  showSelect &&  <div className='slider'>
                 <div>Level: {level} </div>
                 <Slider className='slider-component'
                 defaultValue={level} 
@@ -34,8 +34,8 @@ const NavBar = ({level, changeLevel, changeSelect}) => {
                 step={100} 
                 onChange={changeLevel}
                 />
-            </div>
-            <div className='select-container'>
+            </div>}
+             <div className='select-container'>
                 <Select className='select-component'
                 value={format} 
                 onChange={handleChangeSelect}

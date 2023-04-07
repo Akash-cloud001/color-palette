@@ -3,16 +3,15 @@
     font-size: small;
     position: relative;
     padding: 5px;
-    
 }
+
 .copy-content{
     position: absolute;
     bottom: 0;
-    font-size: smaller;
+    font-size: small;
     padding: 5px;
     letter-spacing: 1px;
 }
-
 
 .copy-button{
     position: absolute;
@@ -24,7 +23,6 @@
     background: transparent;
     border: none;
     background: rgba(255, 255, 255, 0.3);
-    color: white;
     opacity: 0;
     transition: all .5s;
     text-transform: uppercase;
@@ -39,7 +37,6 @@
     bottom: 0;
     padding: 3px 5px;
     background: rgba(255, 255, 255, 0.3);
-    color: white;
 }
 
 .copy-overlay{
@@ -66,7 +63,6 @@
     translate: -50% -50%;
     scale: 0;
     opacity: 0;
-    color: white;
     transition: all 0.4s ease-in-out;
     /* transition-delay: 0.1s; */
 }
@@ -87,4 +83,13 @@
     opacity: 1;
     scale: 1;
     z-index: 6;
+}
+
+.light-text{
+    transition: all 0.4s ease-in-out;
+    color: white;
+}
+.dark-text{
+    transition: all 0.4s ease-in-out;
+    color: black;
 }

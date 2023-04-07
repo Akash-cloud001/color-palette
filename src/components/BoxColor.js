@@ -3,6 +3,10 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {  Snackbar, IconButton, Alert } from '@mui/material';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import '../styles/BoxColor.css';
+import chroma from 'chroma-js';
+
+
+
 
 const BoxColor = (props) => {
   const navigate = useNavigate();
@@ -23,19 +27,22 @@ const BoxColor = (props) => {
       e.stopPropagation();
       navigate(`/palette/${paletteId}/${colorId}`);
   }
+
+  const isDarkColor = chroma(color).luminance() <= 0.4;
+
   return (
     <>
     <CopyToClipboard text={color} onCopy={changeCopy}>
       <div className='BoxColor' style={{backgroundColor:color}}>
-        <div className='copy-content'>{name}</div>
-        <button className='copy-button'>Copy</button>
+        <div className={`copy-content ${isDarkColor?'light-text':'dark-text'}`}>{name}</div>
+        <button className={`copy-button ${isDarkColor?'light-text':'dark-text'}`}>Copy</button>
 
        {showLink &&  
        <Link 
           to={`/palette/${paletteId}/${colorId}`} 
           onClick={(e)=>{handleSingleColorClick(e,paletteId,colorId)}}
         >
-          <button className='see-more'>More</button>
+          <button className={`see-more ${isDarkColor?'light-text':'dark-text'}`}>More</button>
         </Link>
         }
       </div>

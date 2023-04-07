@@ -34,7 +34,7 @@ const Palette = () => {
 
   return (
     <div className='palette'>
-      <NavBar level={level} changeLevel={changeLevel} changeSelect={changeSelect}/>
+      <NavBar level={level} showSelect changeLevel={changeLevel} changeSelect={changeSelect}/>
       <div className='palette-colors'>
           {colors[level]
           .map(color=>

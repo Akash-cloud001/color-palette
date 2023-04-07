@@ -1,19 +1,46 @@
 import React, {useState} from 'react'
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import colorSeeds from '../colorSeeds';
 import { generatePalette } from '../colorHelper';
 import BoxColor from './BoxColor';
+import NavBar from './NavBar';
+import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/styles';
 
 
-const SingleColorPalette = () => {
+const styles = {
+  btn:{
+    height: '100%',
+    width : '100%',
+    backgroundColor : '#212121',
+    color: 'white',
+    fontSize: '1.2rem',
+    overflow: 'hidden',
+    transition: 'all 250ms ease-in-out',
+    "&:hover":{
+      fontSize:'1.3rem'
+    }
+  }
+}
+
+
+const SingleColorPalette = (props) => {
+  const { classes } = props;
+  const navigate = useNavigate();
   const {paletteId,colorId} = useParams();
+
+  const [format, setFormat] = useState('hex');
+  const changeSelect = (val)=>{
+    setFormat(val); 
+  };
+  
   const findSinglePalette = (paletteId, colorId)=>{
-    // TODO need to find the exact color in a palette by using
-    // TODO  paletteId, colorId
     return colorSeeds.find((palette)=>{
       return palette.id === paletteId;
     })
   }
+  const [pal, setPal] = useState(generatePalette(findSinglePalette(paletteId)));
+  const {paletteName, emoji} = pal;
 
   function gatherShades(){
     let allColors = pal.colors;
@@ -25,27 +52,43 @@ const SingleColorPalette = () => {
     }
     return newShades.slice(1);
   }
-
-  const [pal, setPal] = useState(generatePalette(findSinglePalette(paletteId)));
   const shades = gatherShades();
+  
+  const colorBoxes = shades.map(shade => <BoxColor 
+    name={shade.name}
+    key ={shade.name}
+    color={shade[format]}
+    showLink = {false}
+  />)
 
-  console.log(pal)
-  console.log(paletteId, colorId);
-  console.log('shades ',shades );
+  // ? I don't know but here i have to go -2 index to go to parent 
+  const handleHeadBackButton = ()=>{navigate(-2)}
+
 
   return (
-    <div className='palette'>
-      
+    <div className='SingleColorPalette palette'>
+      {/* NAVBAR */}
+      <NavBar changeSelect={changeSelect}/>
       <div className='palette-colors'>
-        {shades.map(shade => <BoxColor 
-              name={shade.name}
-              key ={shade.id}
-              color={shade.hex}
-              showLink = {false}
-          />)}
+        {colorBoxes}
+        <button className={classes.btn} onClick={handleHeadBackButton}>
+          Go Back
+        </button>
       </div>
+      {/* FOOTER */}
+      <footer className='palette-footer'>
+            <a href='https://github.com/Akash-cloud001'><code>Made by  Akash</code></a>
+            <div>
+              <span>
+                {paletteName}
+              </span>
+              <span className='footer-emoji'>
+                {emoji}
+              </span>
+            </div>
+      </footer>
     </div>
   )
 }
 
-export default SingleColorPalette;
+export default withStyles(styles)(SingleColorPalette);
