@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ChromePicker } from 'react-color';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -11,9 +12,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { Button } from '@mui/material';
 
-
-const drawerWidth = 240;
+// 240px
+const drawerWidth = 300;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
       flexGrow: 1,
@@ -101,23 +103,33 @@ export default function CreateNewPalette() {
             width: drawerWidth,
             boxSizing: 'border-box',
           },
+          
         }}
         variant="persistent"
         anchor="left"
         open={open}
       >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
+        <DrawerHeader >
+            
+            <IconButton onClick={handleDrawerClose}>
+                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
         </DrawerHeader>
-        <Divider />
-        {/* Here Comes the form */}
-        <Divider />
-        {/* here comes the form */}
+        {/* <Divider /> */}
+            <Typography variant='h4' fontSize={'large'} fontWeight={'bold'} width={'100%'}>
+                Design Your Own Palette
+            </Typography>
+            <div>
+                <Button variant='outlined' color='secondary'>Clear Palette</Button>
+                <Button variant='outlined' color='primary'>Random Color</Button>
+            </div>
+            {/* Here Comes the form */}
+            <ChromePicker color='red' onChangeComplete={(newColor)=>{console.log(newColor)}}/>
+
+            <Button variant='contained' color='primary'>Add Color</Button>
       </Drawer>
       <Main open={open}>
-        
+        <DrawerHeader/>
       </Main>
     </Box>
   )

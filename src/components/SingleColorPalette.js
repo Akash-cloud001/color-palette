@@ -4,7 +4,6 @@ import colorSeeds from '../colorSeeds';
 import { generatePalette } from '../colorHelper';
 import BoxColor from './BoxColor';
 import NavBar from './NavBar';
-import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 
 
