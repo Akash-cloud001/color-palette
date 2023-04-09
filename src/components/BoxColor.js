@@ -1,26 +1,19 @@
 import React, { useState } from 'react'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-import {  Snackbar, IconButton, Alert } from '@mui/material';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import {  Snackbar, Alert } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/BoxColor.css';
 import chroma from 'chroma-js';
-
-
-
 
 const BoxColor = (props) => {
   const navigate = useNavigate();
 
-  const {name,color,paletteId,colorId, showLink} = props;
+  const {  name, color, paletteId, colorId, showLink } = props;
   const [copied, setCopied] = useState(false);
-  const [open, setOpen] = useState(false);
 
   const changeCopy = ()=>{
     setCopied(true);
     setTimeout(()=> setCopied(false),1000);
-  }
-  const closeSnackBar = ()=>{
-    setOpen(false);
   }
 
   const handleSingleColorClick = (e,paletteId, colorId)=>{
@@ -28,7 +21,7 @@ const BoxColor = (props) => {
       navigate(`/palette/${paletteId}/${colorId}`);
   }
 
-  const isDarkColor = chroma(color).luminance() <= 0.4;
+  const isDarkColor = chroma(color).luminance() <= 0.4 ;
 
   return (
     <>

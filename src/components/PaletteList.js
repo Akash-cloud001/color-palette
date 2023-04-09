@@ -26,7 +26,16 @@ const styles = {
         display:'flex',
         width : '100%',
         justifyContent: 'space-between',
-        color:'white'
+        color:'white',
+        alignItems:'center',
+        "& a":{
+            color: 'white',
+            textDecoration: 'none',
+            padding: '0.5rem 1rem',
+            backgroundColor: 'rgba(0,0,0,0.3)',
+            borderRadius: '8px',
+            fontSize:'medium'
+        }
     },
     palettes:{
         boxSizing:'border-box',
@@ -45,12 +54,12 @@ const PaletteList = (props) => {
         navigate(`palette/${id}`);
     }
 
-    
     return (
     <div className={classes.root}>
         <div className={classes.container}>
             <nav className={classes.nav}>
                 <h2>Color Palette</h2>
+                <Link to={'/palette/new-palette'}>Create Palette</Link>
             </nav>
             <div className={classes.palettes}>
                 {palette.map((pal)=>(
