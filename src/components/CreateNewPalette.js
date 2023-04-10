@@ -66,7 +66,18 @@ export default function CreateNewPalette() {
 
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
-  
+    const [currentColor, setCurrentColor] = React.useState('teal');
+    const [colorsArray, setColorsArray] = React.useState(['purple','orange']);
+
+
+    const updateCurrentColor=(newColor)=>{
+        setCurrentColor(newColor.hex);
+    };
+
+    const addNewColor = ()=>{
+      setColorsArray([...colorsArray, currentColor]);
+    };
+
     const handleDrawerOpen = () => {
       setOpen(true);
     };
@@ -115,7 +126,7 @@ export default function CreateNewPalette() {
                 {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
         </DrawerHeader>
-        {/* <Divider /> */}
+        <Divider />
             <Typography variant='h4' fontSize={'large'} fontWeight={'bold'} width={'100%'}>
                 Design Your Own Palette
             </Typography>
@@ -124,12 +135,28 @@ export default function CreateNewPalette() {
                 <Button variant='outlined' color='primary'>Random Color</Button>
             </div>
             {/* Here Comes the form */}
-            <ChromePicker color='red' onChangeComplete={(newColor)=>{console.log(newColor)}}/>
+            <ChromePicker 
+                color={currentColor} 
+                // onChangeComplete={(newColor)=>{updateCurrentColor(newColor)}}
+                onChange={(newColor)=>{updateCurrentColor(newColor)}}
+            />
 
-            <Button variant='contained' color='primary'>Add Color</Button>
+            <Button 
+                variant='contained' 
+                color='primary'
+                style={{backgroundColor:currentColor}}
+                onClick={addNewColor}
+            >
+                    Add Color
+            </Button>
       </Drawer>
       <Main open={open}>
         <DrawerHeader/>
+        <ul>
+          {colorsArray.map(color => (
+            <li style={{backgroundColor:color}}>{color}</li>
+          ))}
+        </ul>
       </Main>
     </Box>
   )
