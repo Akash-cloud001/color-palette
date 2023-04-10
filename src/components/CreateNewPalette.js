@@ -13,13 +13,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Button } from '@mui/material';
+import DragColorBox from './DragColorBox';
 
 // 240px
 const drawerWidth = 300;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
       flexGrow: 1,
-      padding: theme.spacing(3),
+      height: 'calc(100vh - 64px)',
+      // padding: theme.spacing(3),
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -152,9 +154,9 @@ export default function CreateNewPalette() {
       </Drawer>
       <Main open={open}>
         <DrawerHeader/>
-        <ul>
+        <ul style={{height:'100%'}}>
           {colorsArray.map(color => (
-            <li style={{backgroundColor:color}}>{color}</li>
+            <DragColorBox color={color} />
           ))}
         </ul>
       </Main>
