@@ -40,7 +40,7 @@ const styles = {
 }
 
 function DragColorBox(props){
-    const { classes,color,name } = props;
+    const { classes,color,name,handleDelete } = props;
 
     return (
         <div className={classes.root} style={{backgroundColor: color}}> 
@@ -48,7 +48,7 @@ function DragColorBox(props){
                 <span className={classes.boxName}>
                     {name}
                 </span>
-                <DeleteIcon style={{transition: 'all 0.3s ease-in-out'}}/>
+                <DeleteIcon onClick={handleDelete} style={{transition: 'all 0.3s ease-in-out'}}/>
             </div>
         </div>
     )

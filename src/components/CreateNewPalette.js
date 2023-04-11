@@ -98,6 +98,10 @@ export default function CreateNewPalette(props) {
       setNewPaletteName(e.target.value);
     }
 
+    const handleDeletePalette = (colorName)=>{
+      setColorsArray(colorsArray.filter(color => color.name !== colorName))
+    }
+
     const handleSavePalette = () =>{
       const newPalette = {
         paletteName: newPaletteName,
@@ -232,7 +236,12 @@ export default function CreateNewPalette(props) {
         <DrawerHeader/>
         <ul style={{height:'100%'}}>
           {colorsArray.map(color => (
-            <DragColorBox color={color.color} name={color.name}/>
+            <DragColorBox 
+              key={color.name}
+              color={color.color} 
+              name={color.name} 
+              handleDelete={()=>handleDeletePalette(color.name)} 
+            />
           ))}
         </ul>
       </Main>
