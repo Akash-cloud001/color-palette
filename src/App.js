@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<PaletteList palette = {palettes}/>} />
-        <Route path='/palette/new-palette' element={<CreateNewPalette savePalette={savePalette}/>} />
+        <Route path='/palette/generate/new-palette' element={<CreateNewPalette savePalette={savePalette} palettes = {palettes}/>} />
         <Route path='/palette/:id' element={<Palette palettes={palettes}/>} />
         <Route path='/palette/:paletteId/:colorId' element={<SingleColorPalette palettes={palettes}/>} />
       </Routes>

@@ -59,7 +59,7 @@ const PaletteList = (props) => {
         <div className={classes.container}>
             <nav className={classes.nav}>
                 <h2>Color Palette</h2>
-                <Link to={'/palette/new-palette'}>Create Palette</Link>
+                <Link to={'/palette/generate/new-palette'}>Create Palette</Link>
             </nav>
             <div className={classes.palettes}>
                 {palette.map((pal)=>(

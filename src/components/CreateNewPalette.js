@@ -70,13 +70,13 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 
 export default function CreateNewPalette(props) {
     const navigate = useNavigate();
-    const { savePalette } = props;
+    const { palettes,savePalette } = props;
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
     const [currentColor, setCurrentColor] = React.useState('teal');
     const [colorsArray, setColorsArray] = React.useState([{name:'red', color:'red'}]);
     const [newColorName, setNewColorName] = React.useState('');
-
+    const [newPaletteName, setNewPaletteName] = React.useState('');
     const updateCurrentColor=(newColor)=>{
         setCurrentColor(newColor.hex);
     };
@@ -93,11 +93,15 @@ export default function CreateNewPalette(props) {
     const handleChange = (e)=>{
       setNewColorName(e.target.value);
     }
+
+    const handleChangeInPaletteName = (e)=>{
+      setNewPaletteName(e.target.value);
+    }
+
     const handleSavePalette = () =>{
-      let newName = "Test Palette"
       const newPalette = {
-        paletteName: newName,
-        id: newName.toLowerCase().replace(/ /g,"-"),
+        paletteName: newPaletteName,
+        id: newPaletteName.toLowerCase().replace(/ /g,"-"),
         emoji: '✅',
         colors: colorsArray
       }
@@ -117,6 +121,11 @@ export default function CreateNewPalette(props) {
           ({ color }) => color !== currentColor
         )
       );
+      ValidatorForm.addValidationRule("isPaletteNameUnique", value => 
+        palettes.every(
+          ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+        )
+      );
     },[currentColor,colorsArray])
 
 
@@ -133,7 +142,7 @@ export default function CreateNewPalette(props) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} color='default'>
-        <Toolbar>
+        <Toolbar width='100%'>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -150,13 +159,22 @@ export default function CreateNewPalette(props) {
           >
             Persistent drawer
           </Typography>
-        <Button 
-          variant='contained' 
-          color='primary'
-          onClick={handleSavePalette}
-        >
-          Save
-        </Button>
+          <ValidatorForm onSubmit={handleSavePalette} style={{display:'flex' ,width:'max-content'}}>
+            <TextValidator 
+              label="Palette Name" 
+              value={newPaletteName} 
+              onChange={handleChangeInPaletteName}
+              validators={['required', 'isPaletteNameUnique']}
+              errorMessages={["Enter Palette Name","Name already used!"]}
+            />
+            <Button 
+              variant='contained' 
+              color='primary'
+              type='submit'
+            >
+              Save
+            </Button>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer
