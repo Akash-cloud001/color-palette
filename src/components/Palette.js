@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import NavBar from './NavBar';
-import colorSeeds from '../colorSeeds';
 import { useParams } from 'react-router-dom';
 import '../styles/Palette.css';
 import BoxColor from './BoxColor';
@@ -8,11 +7,12 @@ import { generatePalette } from '../colorHelper';
 
 
 
-const Palette = () => {
+const Palette = (props) => {
+  const { palettes } = props;
   const {id} = useParams();
   
   const findPalette = (id)=>{
-    return colorSeeds.find((palette)=>{
+    return palettes.find((palette)=>{
       return palette.id === id;
     })
   };  

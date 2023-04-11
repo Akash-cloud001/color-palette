@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import { useNavigate, useParams } from 'react-router';
-import colorSeeds from '../colorSeeds';
 import { generatePalette } from '../colorHelper';
 import BoxColor from './BoxColor';
 import NavBar from './NavBar';
@@ -24,7 +23,7 @@ const styles = {
 
 
 const SingleColorPalette = (props) => {
-  const { classes } = props;
+  const { classes, palettes } = props;
   const navigate = useNavigate();
   const {paletteId,colorId} = useParams();
 
@@ -33,8 +32,8 @@ const SingleColorPalette = (props) => {
     setFormat(val); 
   };
   
-  const findSinglePalette = (paletteId, colorId)=>{
-    return colorSeeds.find((palette)=>{
+  const findSinglePalette = ( paletteId, colorId )=>{
+    return palettes.find((palette)=>{
       return palette.id === paletteId;
     })
   }

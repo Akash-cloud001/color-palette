@@ -16,6 +16,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Button } from '@mui/material';
 import DragColorBox from './DragColorBox';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import { useNavigate } from 'react-router';
 
 
 // 240px
@@ -67,8 +68,9 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   }));
   
 
-export default function CreateNewPalette() {
-
+export default function CreateNewPalette(props) {
+    const navigate = useNavigate();
+    const { savePalette } = props;
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
     const [currentColor, setCurrentColor] = React.useState('teal');
@@ -91,7 +93,17 @@ export default function CreateNewPalette() {
     const handleChange = (e)=>{
       setNewColorName(e.target.value);
     }
-
+    const handleSavePalette = () =>{
+      let newName = "Test Palette"
+      const newPalette = {
+        paletteName: newName,
+        id: newName.toLowerCase().replace(/ /g,"-"),
+        emoji: '✅',
+        colors: colorsArray
+      }
+      savePalette(newPalette);
+      navigate(-1);
+    }
 
     // useEffect
     useEffect(()=>{
@@ -120,7 +132,7 @@ export default function CreateNewPalette() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} color='default'>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -131,9 +143,20 @@ export default function CreateNewPalette() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography 
+            variant="h6" 
+            noWrap 
+            component="div"
+          >
             Persistent drawer
           </Typography>
+        <Button 
+          variant='contained' 
+          color='primary'
+          onClick={handleSavePalette}
+        >
+          Save
+        </Button>
         </Toolbar>
       </AppBar>
       <Drawer
