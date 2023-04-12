@@ -67,20 +67,23 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     justifyContent: 'flex-end',
   }));
   
+CreateNewPalette.defaultProps={
+  maxColors : 20
+};
 
 export default function CreateNewPalette(props) {
     const navigate = useNavigate();
-    const { palettes,savePalette } = props;
+    const { palettes,savePalette,maxColors } = props;
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
     const [currentColor, setCurrentColor] = React.useState('teal');
-    const [colorsArray, setColorsArray] = React.useState([{name:'red', color:'red'}]);
+    const [colorsArray, setColorsArray] = React.useState(palettes[0].colors);
     const [newColorName, setNewColorName] = React.useState('');
     const [newPaletteName, setNewPaletteName] = React.useState('');
     const updateCurrentColor=(newColor)=>{
         setCurrentColor(newColor.hex);
     };
-
+    const isPaletteFull = colorsArray.length >= maxColors;
     const addNewColor = ()=>{
       const newColor = {
         color: currentColor,
@@ -102,6 +105,18 @@ export default function CreateNewPalette(props) {
       setColorsArray(colorsArray.filter(color => color.name !== colorName))
     }
 
+    const clearColors = ()=>{
+      setColorsArray([]);
+    }
+
+    const randomColor = ()=>{
+      //pick  one random exisitng palettes
+      const allColors = palettes.map(p => p.colors).flat();
+      let random = Math.floor(Math.random() * allColors.length);
+      const randomColor = allColors[random];
+      setColorsArray([...colorsArray, randomColor]);
+      console.log(allColors);
+    }
     const handleSavePalette = () =>{
       const newPalette = {
         paletteName: newPaletteName,
@@ -206,8 +221,21 @@ export default function CreateNewPalette(props) {
                 Design Your Own Palette
             </Typography>
             <div>
-                <Button variant='outlined' color='secondary'>Clear Palette</Button>
-                <Button variant='outlined' color='primary'>Random Color</Button>
+                <Button 
+                  variant='outlined' 
+                  color='secondary' 
+                  onClick={clearColors}
+                >
+                  Clear Palette
+                </Button>
+                <Button 
+                  variant='outlined'
+                  color='primary' 
+                  onClick={randomColor}
+                  disabled={isPaletteFull}
+                >
+                  Random Color
+                </Button>
             </div>
             {/* Here Comes the form */}
             <ChromePicker 
@@ -224,26 +252,27 @@ export default function CreateNewPalette(props) {
               <Button 
                 variant='contained'  
                 color='primary'
-                style={{backgroundColor:currentColor}}
+                style={{backgroundColor: isPaletteFull?"lightgrey":currentColor }}
                 type='submit'
+                disabled={isPaletteFull}
               >
-                    Add Color
+                {isPaletteFull ? 'Palette Full' : 'Add Color'}
               </Button>
             </ValidatorForm>
             
       </Drawer>
       <Main open={open}>
         <DrawerHeader/>
-        <ul style={{height:'100%'}}>
-          {colorsArray.map(color => (
-            <DragColorBox 
-              key={color.name}
-              color={color.color} 
-              name={color.name} 
-              handleDelete={()=>handleDeletePalette(color.name)} 
-            />
-          ))}
-        </ul>
+          <div style={{height:'100%'}}>
+            {colorsArray.map(color => (
+              <DragColorBox 
+                key={color.name}
+                color={color.color} 
+                name={color.name} 
+                handleDelete={()=>handleDeletePalette(color.name)} 
+              />
+            ))}
+          </div>
       </Main>
     </Box>
   )

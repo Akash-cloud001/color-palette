@@ -12,6 +12,7 @@ const styles = {
         height: '25%',
         width : '20%',
         margin: '0 auto',
+        marginBottom: '-6.5px',
         display: 'inline-block',
         position: 'relative',
         cursor : 'pointer',
