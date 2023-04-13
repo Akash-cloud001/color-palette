@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
+import{ withStyles } from '@material-ui/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,7 +11,23 @@ import { Button } from '@mui/material';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
 
-const drawerWidth = 300;
+const drawerWidth = 240;
+
+const styles = {
+  root:{
+    display:'flex',
+
+  },
+  toolbar:{
+    width: '100%',
+    display:'flex',
+    justifyContent:'space-between'
+  },
+  typography:{
+    fontWeight:'bold'
+  }
+}
+
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
@@ -19,6 +36,9 @@ const AppBar = styled(MuiAppBar, {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    flexDirection : 'row',
+    justifyContent : 'space-between',
+    height : '64px',
     ...(open && {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: `${drawerWidth}px`,
@@ -32,6 +52,7 @@ const AppBar = styled(MuiAppBar, {
 
 const PaletteFormNav = (props) => {
     const { 
+        classes,
         open, 
         newPaletteName, 
         handleDrawerOpen, 
@@ -40,10 +61,10 @@ const PaletteFormNav = (props) => {
     } = props;
 
     return (
-        <div>
+        <div className={classes.root}>
             <CssBaseline />
             <AppBar position="fixed" open={open} color='default'>
-                <Toolbar width='100%'>
+                <Toolbar className={classes.toolbar}>
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
@@ -57,37 +78,43 @@ const PaletteFormNav = (props) => {
                     variant="h6" 
                     noWrap 
                     component="div"
+                    sx = {{fontWeight:'bold', ...(open && {visibility:'hidden'})}}
                 >
-                    Persistent drawer
+                    Your Palette
                 </Typography>
-                <ValidatorForm onSubmit={handleSavePalette} style={{display:'flex' ,width:'max-content'}}>
+                {/* <div className={classes.btns}>
+                  <ValidatorForm 
+                    onSubmit={handleSavePalette} 
+                    style={{display:'flex' ,width:'max-content'}}
+                  >
                     <TextValidator 
-                    label="Palette Name" 
-                    value={newPaletteName} 
-                    onChange={handleChangeInPaletteName}
-                    validators={['required', 'isPaletteNameUnique']}
-                    errorMessages={["Enter Palette Name","Name already used!"]}
+                      label="Palette Name" 
+                      value={newPaletteName} 
+                      onChange={handleChangeInPaletteName}
+                      validators={['required', 'isPaletteNameUnique']}
+                      errorMessages={["Enter Palette Name","Name already used!"]}
                     />
                     <Button 
-                    variant='contained' 
-                    color='primary'
-                    type='submit'
+                      variant='contained' 
+                      color='primary'
+                      type='submit'
                     >
                     Save
                     </Button>
-                    <Link to='/'>
-                    <Button 
-                    variant='contained'
-                    color='secondary'
-                    >
-                        Go Back
-                    </Button>
-                    </Link>
-                </ValidatorForm>
+                  </ValidatorForm>
+                </div> */}
+                  <Link to='/'>
+                      <Button 
+                        variant='contained'
+                        color='secondary'
+                      >
+                          Go Back
+                      </Button>
+                  </Link>
                 </Toolbar>
             </AppBar>
         </div>
   )
 }
 
-export default PaletteFormNav;
+export default withStyles(styles)(PaletteFormNav);

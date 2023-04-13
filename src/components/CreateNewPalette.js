@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
+import{ withStyles } from '@material-ui/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
@@ -17,7 +18,20 @@ import ColorPickerForm from './ColorPickerForm';
 
 
 // 240px
-const drawerWidth = 300;
+const drawerWidth = 240;
+
+const styles ={
+  btns:{
+    display:'flex',
+    flexDirection:'column',
+    width : '80%',
+    marginInline: 'auto',
+    alignItems: 'center',
+    gap: '1rem',
+    margin : '1rem 0px'
+  }
+}
+
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
       flexGrow: 1,
@@ -52,9 +66,9 @@ CreateNewPalette.defaultProps={
   maxColors : 20
 };
 
-export default function CreateNewPalette(props) {
+ function CreateNewPalette(props) {
     const navigate = useNavigate();
-    const { palettes,savePalette,maxColors } = props;
+    const { classes,palettes,savePalette,maxColors } = props;
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
     const [currentColor, setCurrentColor] = React.useState('teal');
@@ -154,50 +168,52 @@ export default function CreateNewPalette(props) {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            justifyContent:'space-between',
+            alignItems: 'center'
           },
-          
         }}
         variant="persistent"
         anchor="left"
         open={open}
       >
         <DrawerHeader >
-            
+
+            <Typography variant='h4' fontSize={'medium'} fontWeight={'bold'} flexGrow={1}>
+                Design Your Own Palette
+            </Typography>
+
             <IconButton onClick={handleDrawerClose}>
                 {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
+          
         </DrawerHeader>
-        <Divider />
-            <Typography variant='h4' fontSize={'large'} fontWeight={'bold'} width={'100%'}>
-                Design Your Own Palette
-            </Typography>
-            <div>
-                <Button 
-                  variant='outlined' 
-                  color='secondary' 
-                  onClick={clearColors}
-                >
-                  Clear Palette
-                </Button>
-                <Button 
-                  variant='outlined'
-                  color='primary' 
-                  onClick={randomColor}
-                  disabled={isPaletteFull}
-                >
-                  Random Color
-                </Button>
-            </div>
-            {/* Here Comes the form */}
-            <ColorPickerForm 
-              currentColor = {currentColor}
-              newColorName = {newColorName}
-              addNewColor = {addNewColor}
-              updateCurrentColor = {updateCurrentColor}
-              handleChange = {handleChange}
-              isPaletteFull = {isPaletteFull}
-            />
-            
+          {/* Here Comes the form */}
+          <ColorPickerForm 
+            currentColor = {currentColor}
+            newColorName = {newColorName}
+            addNewColor = {addNewColor}
+            updateCurrentColor = {updateCurrentColor}
+            handleChange = {handleChange}
+            isPaletteFull = {isPaletteFull}
+          />
+                      
+          <div className={classes.btns}>
+              <Button 
+                variant='outlined' 
+                color='secondary' 
+                onClick={clearColors}
+              >
+                Clear Palette
+              </Button>
+              <Button 
+                variant='outlined'
+                color='primary' 
+                onClick={randomColor}
+                disabled={isPaletteFull}
+              >
+                Random Color
+              </Button>
+          </div>
       </Drawer>
       <Main open={open}>
         <DrawerHeader/>
@@ -217,3 +233,4 @@ export default function CreateNewPalette(props) {
 }
 
 
+export default withStyles(styles)(CreateNewPalette);

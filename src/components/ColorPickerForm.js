@@ -1,19 +1,39 @@
 import * as React from 'react';
+import{ withStyles } from '@material-ui/styles';
 import { ChromePicker } from 'react-color';
 import { Button } from '@mui/material';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
+const styles = {
+  root:{
+    display:'flex',
+    flexDirection:'column',
+    gap: '1rem',
+    alignItems:'center'
+  },
+  form:{
+    display:'flex',
+    flexDirection:'column',
+    gap: '.25rem',
+    alignItems:'center',
+    width: '100%',
+    '& button':{
+      width: '95%'
+    }
+  }
+}
 
 const ColorPickerForm = (props) => {
-    const {currentColor, newColorName, addNewColor, updateCurrentColor,handleChange,isPaletteFull } = props;
+    const {classes,currentColor, newColorName, addNewColor, updateCurrentColor,handleChange,isPaletteFull } = props;
     
     return (
-    <div>
-        <ChromePicker 
+        <div className={classes.root}>
+            <ChromePicker 
                 color={currentColor} 
                 onChange={(newColor)=>{updateCurrentColor(newColor)}}
+                className={classes.colorPicker}
             />
-            <ValidatorForm onSubmit={addNewColor}>
+            <ValidatorForm onSubmit={addNewColor} className={classes.form}>
               <TextValidator 
                 value = {newColorName}
                 onChange = {handleChange}
@@ -30,8 +50,8 @@ const ColorPickerForm = (props) => {
                 {isPaletteFull ? 'Palette Full' : 'Add Color'}
               </Button>
             </ValidatorForm>
-    </div>
+        </div>
   )
 }
 
-export default ColorPickerForm;
+export default withStyles(styles)(ColorPickerForm);
