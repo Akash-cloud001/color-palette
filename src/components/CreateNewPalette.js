@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { ChromePicker } from 'react-color';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -14,6 +13,7 @@ import DragColorBox from './DragColorBox';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { useNavigate } from 'react-router';
 import PaletteFormNav from './PaletteFormNav';
+import ColorPickerForm from './ColorPickerForm';
 
 
 // 240px
@@ -189,27 +189,14 @@ export default function CreateNewPalette(props) {
                 </Button>
             </div>
             {/* Here Comes the form */}
-            <ChromePicker 
-                color={currentColor} 
-                onChange={(newColor)=>{updateCurrentColor(newColor)}}
+            <ColorPickerForm 
+              currentColor = {currentColor}
+              newColorName = {newColorName}
+              addNewColor = {addNewColor}
+              updateCurrentColor = {updateCurrentColor}
+              handleChange = {handleChange}
+              isPaletteFull = {isPaletteFull}
             />
-            <ValidatorForm onSubmit={addNewColor}>
-              <TextValidator 
-                value = {newColorName}
-                onChange = {handleChange}
-                validators = {["required", "isColorNameUnique", "isColorUnique"]}
-                errorMessages={["Color name required", "Name Already Taken", "Color already used"]}
-              />
-              <Button 
-                variant='contained'  
-                color='primary'
-                style={{backgroundColor: isPaletteFull?"lightgrey":currentColor }}
-                type='submit'
-                disabled={isPaletteFull}
-              >
-                {isPaletteFull ? 'Palette Full' : 'Add Color'}
-              </Button>
-            </ValidatorForm>
             
       </Drawer>
       <Main open={open}>
