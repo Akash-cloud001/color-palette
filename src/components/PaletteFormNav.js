@@ -25,6 +25,13 @@ const styles = {
   },
   typography:{
     fontWeight:'bold'
+  },
+  btns:{
+    display: 'flex',
+    gap: '1rem',
+    flexGrow: '1',
+    alignItems: 'center',
+    justifyContent: 'flex-end'
   }
 }
 
@@ -74,28 +81,29 @@ const PaletteFormNav = (props) => {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Typography 
+                {/* <Typography 
                     variant="h6" 
                     noWrap 
                     component="div"
                     sx = {{fontWeight:'bold', ...(open && {visibility:'hidden'})}}
                 >
                     Your Palette
-                </Typography>
-                
-                  <PaletteMetaForm 
+                </Typography> */}
+                <div className={classes.btns}>
+                <PaletteMetaForm 
                     newPaletteName = {newPaletteName}
                     handleSavePalette={handleSavePalette}
                     handleChangeInPaletteName = {handleChangeInPaletteName}
                   />
                   <Link to='/'>
                       <Button 
-                        variant='contained'
-                        color='secondary'
+                        variant='outlined'
+                        color='error'
                       >
                           Go Back
                       </Button>
                   </Link>
+                </div>
                 </Toolbar>
             </AppBar>
         </div>

@@ -23,38 +23,45 @@ const PaletteMetaForm = (props) => {
     return (
       <div>
         <Button variant="outlined" onClick={handleClickOpen}>
-          Open form dialog
+            Save
         </Button>
         <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Subscribe</DialogTitle>
+          <DialogTitle>Add Name</DialogTitle>
+          <ValidatorForm 
+                onSubmit={handleSavePalette} 
+                style={{
+                    display:'flex', 
+                    flexDirection: 'column',
+                    width:'max-content'
+                }}
+            >
           <DialogContent>
             <DialogContentText>
-              To subscribe to this website, please enter your email address here. We
-              will send updates occasionally.
+              Please enter a name for your Palette
             </DialogContentText>
-                <ValidatorForm 
-                    onSubmit={handleSavePalette} 
-                    style={{display:'flex' ,width:'max-content'}}
-                >
+               
                 <TextValidator 
                     label="Palette Name" 
                     value={newPaletteName} 
                     onChange={handleChangeInPaletteName}
                     validators={['required', 'isPaletteNameUnique']}
                     errorMessages={["Enter Palette Name","Name already used!"]}
+                    fullWidth
+                    margin='normal'
                 />
-                <Button 
-                    variant='contained' 
-                    color='primary'
-                    type='submit'
-                    >
-                    Save
-                </Button>
-            </ValidatorForm>
+                
           </DialogContent>
           <DialogActions>
+            <Button 
+                variant='contained' 
+                color='primary'
+                type='submit'
+                >
+                Save
+            </Button>
             <Button onClick={handleClose}>Cancel</Button>
           </DialogActions>
+        </ValidatorForm>
         </Dialog>
       </div>
     );
