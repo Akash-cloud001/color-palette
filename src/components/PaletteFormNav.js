@@ -8,8 +8,8 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
+import PaletteMetaForm from './PaletteMetaForm';
 
 const drawerWidth = 240;
 
@@ -82,27 +82,12 @@ const PaletteFormNav = (props) => {
                 >
                     Your Palette
                 </Typography>
-                {/* <div className={classes.btns}>
-                  <ValidatorForm 
-                    onSubmit={handleSavePalette} 
-                    style={{display:'flex' ,width:'max-content'}}
-                  >
-                    <TextValidator 
-                      label="Palette Name" 
-                      value={newPaletteName} 
-                      onChange={handleChangeInPaletteName}
-                      validators={['required', 'isPaletteNameUnique']}
-                      errorMessages={["Enter Palette Name","Name already used!"]}
-                    />
-                    <Button 
-                      variant='contained' 
-                      color='primary'
-                      type='submit'
-                    >
-                    Save
-                    </Button>
-                  </ValidatorForm>
-                </div> */}
+                
+                  <PaletteMetaForm 
+                    newPaletteName = {newPaletteName}
+                    handleSavePalette={handleSavePalette}
+                    handleChangeInPaletteName = {handleChangeInPaletteName}
+                  />
                   <Link to='/'>
                       <Button 
                         variant='contained'
