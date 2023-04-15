@@ -5,15 +5,22 @@ import Palette from './components/Palette';
 import SingleColorPalette from './components/SingleColorPalette';
 import PaletteList from './components/PaletteList';
 import CreateNewPalette from './components/CreateNewPalette';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function App() {  
-  const [palettes, setPalettes] = useState(colorSeeds);
+  const savedPalette = JSON.parse(window.localStorage.getItem('palettes'));
+  console.log(savePalette);
+  const [palettes, setPalettes] = useState(savedPalette || colorSeeds);
   function savePalette(newPalette){
     setPalettes([...palettes, newPalette]);
   }
-
+  useEffect(()=>{
+    window.localStorage.setItem('palettes',JSON.stringify(palettes));
+  }, [palettes])
+  // function syncLocalStorage(){
+    
+  // }
   return (
     <div className="App">
       <Routes>
