@@ -5,7 +5,6 @@ import{ withStyles } from '@material-ui/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -15,10 +14,10 @@ import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { useNavigate } from 'react-router';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
-
+import { DRAWER_WIDTH } from '../constants/constant';
 
 // 240px
-const drawerWidth = 240;
+const drawerWidth = DRAWER_WIDTH;
 
 const styles ={
   btns:{

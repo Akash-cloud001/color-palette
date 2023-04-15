@@ -9,8 +9,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
+import { DRAWER_WIDTH } from '../constants/constant';
 
-const drawerWidth = 240;
+const drawerWidth = DRAWER_WIDTH;
 
 const styles = {
   root:{

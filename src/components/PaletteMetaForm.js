@@ -8,7 +8,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
-import { HealthAndSafety } from '@mui/icons-material';
 
 
 const PaletteMetaForm = (props) => {
@@ -74,7 +73,7 @@ const PaletteMetaForm = (props) => {
                 color='primary'
                 type='submit'
                 >
-                Save
+                Next
             </Button>
             <Button onClick={handleClose}>Cancel</Button>
           </DialogActions>
