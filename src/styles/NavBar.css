@@ -42,8 +42,7 @@
     box-shadow: none !important;
 }
 .select-container{
-    flex-grow: 1;
-    
+    flex-grow: 1;   
 }
 .select-component{
     float: right;
@@ -51,4 +50,24 @@
 }
 .menu-item{
     font-size: small !important;  
+}
+@media ( max-width : 1199.98px){
+    
+}
+@media ( max-width : 991.98px){
+    
+}
+@media ( max-width : 767.98px){
+    
+}
+@media ( max-width : 575px){
+    .navbar{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+    .slider{
+        display: none;        
+    }
+
 }
