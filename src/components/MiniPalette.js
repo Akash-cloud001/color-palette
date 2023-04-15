@@ -63,9 +63,14 @@ const styles = {
 }
 
 const MiniPalette = (props) => {
+  const {deletePalette} = props;
   const navigate = useNavigate();
   const { classes, paletteName, emoji, id, colors, handleClick } = props;
-
+  const handleDeletePalette = (e)=>{
+    e.stopPropagation();
+    deletePalette(id);
+    
+  }
   const miniColorBoxes = colors.map(color=>(
     <div 
       className={classes.miniColor} 
@@ -77,9 +82,8 @@ const MiniPalette = (props) => {
   ))
   return (
     <div className={classes.root} onClick={handleClick}>
-      <div className={classes.delete}>
-        <DeleteIcon className={classes.deleteIcon} style={{transition : 'all 0.4s ease-in-out'}}/>
-      </div>
+
+      <DeleteIcon className={classes.deleteIcon} style={{transition : 'all 0.4s ease-in-out'}} onClick={handleDeletePalette}/>
       <div className={classes.colors}>
         {miniColorBoxes}
       </div>

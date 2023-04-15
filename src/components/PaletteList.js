@@ -49,7 +49,7 @@ const styles = {
 
 
 const PaletteList = (props) => {
-    const {classes,palette} = props;
+    const {classes,palette,deletePalette} = props;
     const navigate = useNavigate()
     const goToPalette = (id)=>{
         navigate(`palette/${id}`);
@@ -64,7 +64,7 @@ const PaletteList = (props) => {
             </nav>
             <div className={classes.palettes}>
                 {palette.map((pal)=>(
-                    <MiniPalette {...pal} handleClick = {()=>goToPalette(pal.id)} key={pal.id}/>
+                    <MiniPalette {...pal} handleClick = {()=>goToPalette(pal.id)} key={pal.id} deletePalette={deletePalette}/>
                     ))}
             </div>
         </div>

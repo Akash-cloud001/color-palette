@@ -11,19 +11,23 @@ import { useEffect, useState } from 'react';
 function App() {  
   const savedPalette = JSON.parse(window.localStorage.getItem('palettes'));
   const [palettes, setPalettes] = useState(savedPalette || colorSeeds);
+
   function savePalette(newPalette){
     setPalettes([...palettes, newPalette]);
   }
+
+  function deletePalette(id){
+    setPalettes(palettes.filter(palette => palette.id !== id));
+  }
+
   useEffect(()=>{
     window.localStorage.setItem('palettes',JSON.stringify(palettes));
   }, [palettes])
-  // async function syncLocalStorage(){
-  //  await  
-  // }
+
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<PaletteList palette = {palettes}/>} />
+        <Route path='/' element={<PaletteList palette = {palettes} deletePalette = {deletePalette}/>} />
         <Route path='/palette/generate/new-palette' element={<CreateNewPalette savePalette={savePalette} palettes = {palettes}/>} />
         <Route path='/palette/:id' element={<Palette palettes={palettes}/>} />
         <Route path='/palette/:paletteId/:colorId' element={<SingleColorPalette palettes={palettes}/>} />
