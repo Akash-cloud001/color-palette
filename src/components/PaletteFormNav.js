@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import{ withStyles } from '@material-ui/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
@@ -81,14 +80,6 @@ const PaletteFormNav = (props) => {
                 >
                     <MenuIcon />
                 </IconButton>
-                {/* <Typography 
-                    variant="h6" 
-                    noWrap 
-                    component="div"
-                    sx = {{fontWeight:'bold', ...(open && {visibility:'hidden'})}}
-                >
-                    Your Palette
-                </Typography> */}
                 <div className={classes.btns}>
                 <PaletteMetaForm 
                     newPaletteName = {newPaletteName}

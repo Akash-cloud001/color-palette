@@ -112,11 +112,12 @@ CreateNewPalette.defaultProps={
       setColorsArray([...colorsArray, randomColor]);
       console.log(allColors);
     }
-    const handleSavePalette = () =>{
+    const handleSavePalette = (newEmoji) =>{
+      console.log(newEmoji);
       const newPalette = {
         paletteName: newPaletteName,
         id: newPaletteName.toLowerCase().replace(/ /g,"-"),
-        emoji: '✅',
+        emoji: newEmoji,
         colors: colorsArray
       }
       savePalette(newPalette);

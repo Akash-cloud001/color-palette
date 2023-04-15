@@ -8,11 +8,13 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
+import { HealthAndSafety } from '@mui/icons-material';
 
 
 const PaletteMetaForm = (props) => {
     const {newPaletteName, handleSavePalette, handleChangeInPaletteName} = props;
     const [open, setOpen] = React.useState(false);
+    const [openEmoji, setOpenEmoji] = React.useState(false);
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -21,17 +23,29 @@ const PaletteMetaForm = (props) => {
     const handleClose = () => {
       setOpen(false);
     };
-  
+    const handleCloseEmoji = () => {
+      setOpenEmoji(false);
+    };
+    const showEmojiPicker =() => {
+      handleClose();
+      setOpenEmoji(true);
+    }
+    const savePalette = (newEmoji) => {
+      handleSavePalette(newEmoji.native);
+    }
     return (
       <div>
         <Button variant="outlined" onClick={handleClickOpen}>
             Save
         </Button>
+        <Dialog open={openEmoji} onClose={handleCloseEmoji}>
+          <DialogTitle>Choose A Palette Emoji</DialogTitle>
+          <Picker title='Choose A Palette Emoji' data = {data} onEmojiSelect={savePalette} />
+        </Dialog>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Add Name</DialogTitle>
-          <Picker />
           <ValidatorForm 
-                onSubmit={handleSavePalette} 
+                onSubmit={showEmojiPicker} 
                 style={{
                     display:'flex', 
                     flexDirection: 'column',
