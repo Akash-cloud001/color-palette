@@ -12,12 +12,12 @@ const styles = {
     width : '100%',
     backgroundColor : '#212121',
     color: 'white',
-    fontSize: '1.2rem',
-    overflow: 'hidden',
-    transition: 'all 250ms ease-in-out',
-    "&:hover":{
-      fontSize:'1.3rem'
-    }
+    fontSize: '1rem',
+  },
+  spanBtn:{
+    display: 'inline-block',
+    padding: '0.25rem 0.5rem',
+    backgroundColor: 'rgba(255,255,255,0.1)'
   }
 }
 
@@ -70,7 +70,9 @@ const SingleColorPalette = (props) => {
       <div className='palette-colors'>
         {colorBoxes}
         <button className={classes.btn} onClick={handleHeadBackButton}>
-          Go Back
+          <span className={classes.spanBtn}>
+            Go Back
+          </span>
         </button>
       </div>
       {/* FOOTER */}
