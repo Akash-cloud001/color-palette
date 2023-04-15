@@ -1,6 +1,7 @@
 import { withStyles } from '@material-ui/styles';
 import React from 'react'
 import { useNavigate } from 'react-router';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const styles = {
   root:{
@@ -9,8 +10,9 @@ const styles = {
     borderRadius : '5px',
     padding : '0.5rem',
     position: 'relative',
-    '&:hover':{
-      cursor: 'pointer'
+    cursor: 'pointer',
+    '&:hover svg':{
+      opacity : 1
     }
   },
   colors:{
@@ -41,6 +43,23 @@ const styles = {
     position: 'relative',
     marginBottom: '-5px'
   },
+  delete:{
+
+  },
+  deleteIcon:{
+    boxSizing : 'content-box',
+    color : 'white',
+    backgroundColor : '#eb3d30',
+    width : '20px',
+    height : '20px',
+    position : 'absolute',
+    right : '0',
+    top : '0',
+    padding : '5px',
+    zIndex : '1',
+    opacity : 0,
+  }
+
 }
 
 const MiniPalette = (props) => {
@@ -58,6 +77,9 @@ const MiniPalette = (props) => {
   ))
   return (
     <div className={classes.root} onClick={handleClick}>
+      <div className={classes.delete}>
+        <DeleteIcon className={classes.deleteIcon} style={{transition : 'all 0.4s ease-in-out'}}/>
+      </div>
       <div className={classes.colors}>
         {miniColorBoxes}
       </div>
