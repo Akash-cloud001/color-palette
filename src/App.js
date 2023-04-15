@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 
 function App() {  
   const savedPalette = JSON.parse(window.localStorage.getItem('palettes'));
-  console.log(savePalette);
   const [palettes, setPalettes] = useState(savedPalette || colorSeeds);
   function savePalette(newPalette){
     setPalettes([...palettes, newPalette]);
@@ -18,8 +17,8 @@ function App() {
   useEffect(()=>{
     window.localStorage.setItem('palettes',JSON.stringify(palettes));
   }, [palettes])
-  // function syncLocalStorage(){
-    
+  // async function syncLocalStorage(){
+  //  await  
   // }
   return (
     <div className="App">

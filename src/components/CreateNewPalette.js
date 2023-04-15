@@ -109,10 +109,8 @@ CreateNewPalette.defaultProps={
       let random = Math.floor(Math.random() * allColors.length);
       const randomColor = allColors[random];
       setColorsArray([...colorsArray, randomColor]);
-      console.log(allColors);
     }
     const handleSavePalette = (newEmoji) =>{
-      console.log(newEmoji);
       const newPalette = {
         paletteName: newPaletteName,
         id: newPaletteName.toLowerCase().replace(/ /g,"-"),

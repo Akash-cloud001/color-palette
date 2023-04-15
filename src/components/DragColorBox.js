@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/styles';
 import chroma from 'chroma-js';
 import DeleteIcon from '@mui/icons-material/Delete';
 function checkLumicity({color}){
-    console.log('in')
      return chroma(color).luminance() <= 0.4 ? 'white':'black';
 }
 
