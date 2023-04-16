@@ -84,28 +84,21 @@ const PaletteList = (props) => {
     }
 
     return (
-        <>
-            <div className={classes.root}>
-                <div className={classes.container}>
-                    <nav className={classes.nav}>
-                        <h2>Color Palette</h2>
-                        <Link to={'/palette/generate/new-palette'}>Create Palette</Link>
-                    </nav>
-                    <div className={classes.palettes}>
-                        {palette.map((pal)=>(
-                            <MiniPalette {...pal} handleClick = {()=>goToPalette(pal.id)} key={pal.id} deletePalette={deletePalette}/>
-                            ))}
-                    </div>
-                    
+        <div className={classes.root}>
+            <div className={classes.container}>
+                <nav className={classes.nav}>
+                    <h2>Color Palette</h2>
+                    <Link to={'/palette/generate/new-palette'}>Create Palette</Link>
+                </nav>
+                <div className={classes.palettes}>
+                    {palette.map((pal)=>(
+                        <MiniPalette {...pal} handleClick = {()=>goToPalette(pal.id)} key={pal.id} deletePalette={deletePalette}/>
+                        ))}
                 </div>
+                
             </div>
-            <footer className='palette-footer'>
-                <a href='https://github.com/Akash-cloud001'><code>Made by  Akash</code></a>
-                <div>
-                    ©️
-                </div>
-            </footer>
-    </>
+        </div>
+            
   )
 }
 
