@@ -41,7 +41,7 @@ const styles = {
             width : '25%',
         }
     },
-    '@media (max-width: 767.98px)':{
+    '@media (max-width: 769.98px)':{
         root:{
             height: '10%',
             width : '50%',
