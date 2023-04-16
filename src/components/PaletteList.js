@@ -5,14 +5,16 @@ import MiniPalette from './MiniPalette';
 import bg from '../images/doodles1.svg';
 const styles = {
     root:{
-        minHeight: '100vh',
+        height: '100vh',
         display : 'flex',
         alignItems: 'flex-start',
         justifyContent: 'center',
+        // Background by SVGBackgrouds.com
         backgroundImage:`url(${bg})`,
+        overflowY: 'scroll',
     },
     container:{
-        width : '50%',
+        width : '60%',
         display : 'flex',
         alignItems: 'flex-start',
         flexDirection: 'column',
@@ -32,8 +34,8 @@ const styles = {
             color: 'white',
             textDecoration: 'none',
             padding: '0.5rem 1rem',
-            backgroundColor: 'rgba(0,0,0,0.3)',
             borderRadius: '8px',
+            textDecoration:'underline',
             fontSize:'medium'
         }
     },
@@ -44,7 +46,33 @@ const styles = {
         gridTemplateColumns: 'repeat(3, 30%)',
         gridGap: '5%',
         height: 'max-content'
-    }
+    },
+    '@media (max-width: 991.98px)':{
+        container:{
+            width:'80%',
+        }
+    },
+
+    '@media (max-width: 767.98px)':{
+        container:{
+            width:'80%'
+        }
+    },
+    '@media (max-width: 575px)':{
+        nav:{
+            fontSize:'small',
+            "& a" : {
+                fontSize: 'small',
+                padding: '0.25rem 0.5rem'
+            }
+        },
+        palettes:{
+            width:'80%',
+            gridTemplateColumns: ' 1fr ',
+            gap: '2%',
+            marginInline : 'auto',
+        }
+    },
 }
 
 
@@ -56,19 +84,28 @@ const PaletteList = (props) => {
     }
 
     return (
-    <div className={classes.root}>
-        <div className={classes.container}>
-            <nav className={classes.nav}>
-                <h2>Color Palette</h2>
-                <Link to={'/palette/generate/new-palette'}>Create Palette</Link>
-            </nav>
-            <div className={classes.palettes}>
-                {palette.map((pal)=>(
-                    <MiniPalette {...pal} handleClick = {()=>goToPalette(pal.id)} key={pal.id} deletePalette={deletePalette}/>
-                    ))}
+        <>
+            <div className={classes.root}>
+                <div className={classes.container}>
+                    <nav className={classes.nav}>
+                        <h2>Color Palette</h2>
+                        <Link to={'/palette/generate/new-palette'}>Create Palette</Link>
+                    </nav>
+                    <div className={classes.palettes}>
+                        {palette.map((pal)=>(
+                            <MiniPalette {...pal} handleClick = {()=>goToPalette(pal.id)} key={pal.id} deletePalette={deletePalette}/>
+                            ))}
+                    </div>
+                    
+                </div>
             </div>
-        </div>
-    </div>
+            <footer className='palette-footer'>
+                <a href='https://github.com/Akash-cloud001'><code>Made by  Akash</code></a>
+                <div>
+                    ©️
+                </div>
+            </footer>
+    </>
   )
 }
 
