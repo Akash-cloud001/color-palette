@@ -36,7 +36,7 @@ const styles ={
       
   },
   '@media (max-width: 575px)':{
-      drawerWidth:DRAWER_WIDTH+60
+
   },
 }
 
@@ -161,7 +161,7 @@ CreateNewPalette.defaultProps={
 
 
   return (
-    <Box sx={{ display: 'flex', overflow: open ? 'hidden':'scroll' }}>
+    <Box sx={{ display: 'flex', '@media (max-width:575px)':{overflowX:open ? 'hidden': 'scroll', height: '100vh'}}}>
       <PaletteFormNav 
         open={open} 
         newPaletteName = {newPaletteName}
@@ -179,7 +179,6 @@ CreateNewPalette.defaultProps={
             justifyContent:'space-between',
             alignItems: 'center',
             height : '100vh',
-            position: 'relative'
           },
         }}
         variant="persistent"
