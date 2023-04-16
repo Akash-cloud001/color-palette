@@ -2,9 +2,6 @@ import React from 'react'
 import { withStyles } from '@material-ui/styles';
 import chroma from 'chroma-js';
 import DeleteIcon from '@mui/icons-material/Delete';
-function checkLumicity({color}){
-     return chroma(color).luminance() <= 0.4 ? 'white':'black';
-}
 
 const styles = {
     root:{
@@ -36,7 +33,26 @@ const styles = {
     },
     boxName:{
         fontWeight:'bold'
-    }
+    },
+   
+    '@media (max-width: 991.98px)':{
+        root:{
+            height: '20%',
+            width : '25%',
+        }
+    },
+    '@media (max-width: 767.98px)':{
+        root:{
+            height: '10%',
+            width : '50%',
+        }
+    },
+    '@media (max-width: 575px)':{
+        root:{
+            height: '10%',
+            width : '100%',
+        }
+    },
 }
 
 function DragColorBox(props){

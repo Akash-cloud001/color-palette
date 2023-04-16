@@ -28,7 +28,16 @@ const styles ={
     alignItems: 'center',
     gap: '1rem',
     margin : '1rem 0px'
-  }
+  },
+  '@media (max-width: 991.98px)':{
+      
+  },
+  '@media (max-width: 767.98px)':{
+      
+  },
+  '@media (max-width: 575px)':{
+      drawerWidth:DRAWER_WIDTH+60
+  },
 }
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -59,6 +68,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
+    
   }));
   
 CreateNewPalette.defaultProps={
@@ -151,7 +161,7 @@ CreateNewPalette.defaultProps={
 
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', overflow: open ? 'hidden':'scroll' }}>
       <PaletteFormNav 
         open={open} 
         newPaletteName = {newPaletteName}
@@ -167,14 +177,16 @@ CreateNewPalette.defaultProps={
             width: drawerWidth,
             boxSizing: 'border-box',
             justifyContent:'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
+            height : '100vh',
+            position: 'relative'
           },
         }}
         variant="persistent"
         anchor="left"
         open={open}
       >
-        <DrawerHeader >
+        <DrawerHeader style={{width:'100%'}}>
 
             <Typography variant='h4' fontSize={'medium'} fontWeight={'bold'} flexGrow={1}>
                 Design Your Own Palette
