@@ -1,0 +1,23 @@
+.palette-footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0.3rem 1rem ;
+    width: 100%;
+    background: rgb(177 112 34 / 50%);
+    margin-top: 2rem;
+}
+
+.palette-footer a{
+    font-size: medium;
+    text-decoration: none;
+    color: black;
+}
+.palette-footer > div{
+    font-size: medium;
+    display: flex;
+    gap: 1rem;
+}

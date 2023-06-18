@@ -2,16 +2,16 @@ import React from 'react'
 import { withStyles } from '@material-ui/styles';
 import { Link, useNavigate } from 'react-router-dom';
 import MiniPalette from './MiniPalette';
-import bg from '../images/doodles1.svg';
+import '../styles/PaletteList.css';
 const styles = {
     root:{
-        height: '100vh',
+        height: 'max-content',
         display : 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        // Background by SVGBackgrouds.com
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '2rem',
         background:'#ffa233',
-        overflowY: 'scroll',
     },
     container:{
         width : '60%',
@@ -21,8 +21,7 @@ const styles = {
         flexWrap:'wrap',
         height : 'max-content',
         gap:'1rem',
-        padding: '1rem 0rem'
-
+        padding: '1rem 0rem',
     },
     nav:{
         display:'flex',
@@ -47,6 +46,7 @@ const styles = {
         gridGap: '5%',
         height: 'max-content'
     },
+    
     '@media (max-width: 991.98px)':{
         container:{
             width:'80%',
@@ -95,8 +95,18 @@ const PaletteList = (props) => {
                         <MiniPalette {...pal} handleClick = {()=>goToPalette(pal.id)} key={pal.id} deletePalette={deletePalette}/>
                         ))}
                 </div>
-                
             </div>
+            <footer className='palette-footer'>
+                    <a href='https://github.com/Akash-cloud001' target='_blank'><code>Made by  Akash</code></a> 
+                    <div>
+                        <a href='https://www.linkedin.com/in/akash-parmar-' target='_blank'>
+                            <i className="ri-linkedin-fill"></i>  
+                        </a>
+                        <a href='https://github.com/Akash-cloud001' target='_blank'>
+                            <i className="ri-github-fill"></i>  
+                        </a>
+                    </div>               
+            </footer>
         </div>
             
   )
