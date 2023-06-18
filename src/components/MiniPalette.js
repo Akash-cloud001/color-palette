@@ -13,7 +13,8 @@ const styles = {
     cursor: 'pointer',
     '&:hover svg':{
       opacity : 1
-    }
+    },
+    // width:'25%',
   },
   colors:{
     height: '150px',

@@ -9,3 +9,6 @@ button{
     border: none;
     font-size: smaller;
 }
+.App{
+    height: max-content;
+}
