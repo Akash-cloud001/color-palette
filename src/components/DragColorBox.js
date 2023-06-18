@@ -32,7 +32,8 @@ const styles = {
         justifyContent: 'space-between'
     },
     boxName:{
-        fontWeight:'bold'
+        fontWeight:'bold',
+
     },
    
     '@media (max-width: 991.98px)':{
@@ -51,16 +52,19 @@ const styles = {
         root:{
             height: '10%',
             width : '100%',
+        },
+        boxContent:{
+            display: (props)=> props.isDrawerOpen ? 'none': 'flex',
         }
     },
 }
 
 function DragColorBox(props){
-    const { classes,color,name,handleDelete } = props;
-
+    const { classes,color,name,handleDelete,isDrawerOpen } = props;
+    console.log(isDrawerOpen);
     return (
         <div className={classes.root} style={{backgroundColor: color}}> 
-            <div className={classes.boxContent}>
+            <div className={classes.boxContent} style={{display:`{ ${isDrawerOpen ? 'none !important':'flex'}}`}}>
                 <span className={classes.boxName}>
                     {name}
                 </span>

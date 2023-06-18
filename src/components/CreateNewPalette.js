@@ -233,6 +233,7 @@ CreateNewPalette.defaultProps={
                 color={color.color} 
                 name={color.name} 
                 handleDelete={()=>handleDeletePalette(color.name)} 
+                isDrawerOpen = {open}
               />
             ))}
           </div>

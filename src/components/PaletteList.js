@@ -10,7 +10,7 @@ const styles = {
         alignItems: 'flex-start',
         justifyContent: 'center',
         // Background by SVGBackgrouds.com
-        backgroundImage:`url(${bg})`,
+        background:'#ffa233',
         overflowY: 'scroll',
     },
     container:{
