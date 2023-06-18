@@ -61,10 +61,9 @@ const styles = {
 
 function DragColorBox(props){
     const { classes,color,name,handleDelete,isDrawerOpen } = props;
-    console.log(isDrawerOpen);
     return (
         <div className={classes.root} style={{backgroundColor: color}}> 
-            <div className={classes.boxContent} style={{display:`{ ${isDrawerOpen ? 'none !important':'flex'}}`}}>
+            <div className={classes.boxContent} >
                 <span className={classes.boxName}>
                     {name}
                 </span>
